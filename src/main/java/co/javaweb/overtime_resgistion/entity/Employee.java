@@ -1,0 +1,63 @@
+package co.javaweb.overtime_resgistion.entity;
+
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "Employee")
+public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int employee_id;
+    @Column(length = 25)
+    private String name;
+    @Column(length = 40)
+    private String password;
+    private int overtime;
+    @LastModifiedDate
+    private Date modifyDate;
+
+    public int getEmployee_id() {
+        return employee_id;
+    }
+
+    public void setEmployee_id(int employee_id) {
+        this.employee_id = employee_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getOvertime() {
+        return overtime;
+    }
+
+    public void setOvertime(int overtime) {
+        this.overtime = overtime;
+    }
+
+    public Date getModifyDate() {
+        return modifyDate;
+    }
+
+    public void setModifyDate(Date modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+}
