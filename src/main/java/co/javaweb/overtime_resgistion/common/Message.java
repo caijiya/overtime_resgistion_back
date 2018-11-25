@@ -18,6 +18,16 @@ public class Message<T> implements Serializable {
 
     private T data;
 
+    private long count;
+
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
+        this.count = count;
+    }
+
     public Message() {
     }
 
@@ -28,9 +38,22 @@ public class Message<T> implements Serializable {
         this.data = data;
     }
 
+    public Message(boolean success, int code, String message, T data, long count) {
+        this.success = success;
+        this.code = code;
+        this.message = message;
+        this.data = data;
+        this.count = count;
+    }
+
     public static <T> Message<T> success(T data) {
         return new Message<>(true, Code.SUCCESS, "ok", data);
     }
+
+    public static <T> Message<T> successHasCount(T data, long count) {
+        return new Message<>(true, Code.SUCCESS, "ok", data, count);
+    }
+
 
     public static Message<Void> fail(int code, String message) {
         return new Message<>(false, code, message, null);

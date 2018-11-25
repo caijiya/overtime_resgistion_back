@@ -17,9 +17,18 @@ public class Employee {
     private String name;
     @Column(length = 40)
     private String password;
-    private int overtime;
+    private double overtime;
     @LastModifiedDate
-    private Date modifyDate;
+    private Date modify_date;
+    private String sex;
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
 
     public int getEmployee_id() {
         return employee_id;
@@ -45,19 +54,19 @@ public class Employee {
         this.password = password;
     }
 
-    public int getOvertime() {
+    public double getOvertime() {
         return overtime;
     }
 
-    public void setOvertime(int overtime) {
+    public void setOvertime(double overtime) {
         this.overtime = overtime;
     }
 
-    public Date getModifyDate() {
-        return modifyDate;
+    public Date getModify_date() {
+        return modify_date;
     }
 
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
+    public void setModify_date(Date modify_date) {
+        this.modify_date = modify_date;
     }
 }
