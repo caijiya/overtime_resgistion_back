@@ -50,7 +50,7 @@ public class Message<T> implements Serializable {
         return new Message<>(true, Code.SUCCESS, "ok", data);
     }
 
-    public static <T> Message<T> successHasCount(T data, long count) {
+    public static <T> Message<T> successForLayui(T data, long count) {
         return new Message<>(true, Code.SUCCESS, "ok", data, count);
     }
 

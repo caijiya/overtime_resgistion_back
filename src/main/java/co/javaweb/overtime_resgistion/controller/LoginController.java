@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -33,11 +33,13 @@ public class LoginController {
         if (employeeList.size() <= 0) {
             return Messages.LOGIN_FAILED;
         }
-        Cookie cookie = new Cookie("user_info", employee_name);
-        cookie.setMaxAge(3600);
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        response.flushBuffer();
+//        Cookie cookie = new Cookie("user_info", employee_name);
+//        cookie.setMaxAge(3600);
+//        cookie.setPath("/");
+//        response.addCookie(cookie);
+//        response.flushBuffer();
+        HttpSession session = request.getSession(Boolean.TRUE);
+        session.setAttribute("username", employee_name);
         return Messages.SUCCESS;
 
 
