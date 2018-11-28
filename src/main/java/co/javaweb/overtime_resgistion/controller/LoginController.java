@@ -1,8 +1,10 @@
 package co.javaweb.overtime_resgistion.controller;
 
+import co.javaweb.overtime_resgistion.annotation.IgnoreLogin;
 import co.javaweb.overtime_resgistion.common.Message;
 import co.javaweb.overtime_resgistion.common.Messages;
 import co.javaweb.overtime_resgistion.entity.Employee;
+import co.javaweb.overtime_resgistion.helper.SessionHelper;
 import co.javaweb.overtime_resgistion.respository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -14,18 +16,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @RestController
 public class LoginController {
     @Autowired
     EmployeeRepository employeeRepository;
+    @Autowired
+    SessionHelper sessionHelper;
 
     @PostMapping("/login")
+    @IgnoreLogin
     public Message login(HttpServletRequest request, HttpServletResponse response,
                          @RequestBody Employee employee) throws IOException {
+
         String employee_name = employee.getName();
         String employee_password = employee.getPassword();
+        HttpSession session = request.getSession(Boolean.TRUE);
+        session.setAttribute("username", Base64.getEncoder().encodeToString(employee_name.getBytes("utf-8")));
+        System.out.println(session.getAttribute("username"));
         if (StringUtils.isEmpty(employee_name) || StringUtils.isEmpty(employee_password)) {
             return Messages.LOGIN_FAILED;
         }
@@ -33,13 +43,7 @@ public class LoginController {
         if (employeeList.size() <= 0) {
             return Messages.LOGIN_FAILED;
         }
-//        Cookie cookie = new Cookie("user_info", employee_name);
-//        cookie.setMaxAge(3600);
-//        cookie.setPath("/");
-//        response.addCookie(cookie);
-//        response.flushBuffer();
-        HttpSession session = request.getSession(Boolean.TRUE);
-        session.setAttribute("username", employee_name);
+        sessionHelper.setCookie(response, "username", Base64.getEncoder().encodeToString(employee_name.getBytes("utf-8")));
         return Messages.SUCCESS;
 
 

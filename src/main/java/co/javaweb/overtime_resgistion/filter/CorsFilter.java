@@ -16,6 +16,8 @@ public class CorsFilter implements Filter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CorsFilter.class);
 
+    private static final String domain = "http://172.18.31.12";
+
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -29,7 +31,7 @@ public class CorsFilter implements Filter {
         System.err.println(origin);
 
         if (origin != null) {
-            httpServletResponse.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+            httpServletResponse.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, domain);
             httpServletResponse.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "GET, POST, PUT, DELETE, OPTIONS");
             httpServletResponse.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "Origin, Accept, Accept-Encoding, X-Requested-With, Content-Type, User-Agent, Referer");
             httpServletResponse.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
