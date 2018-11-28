@@ -8,10 +8,13 @@ import java.io.IOException;
 
 @Component
 public class SessionHelper {
+    private static final String workDomain = "172.18.31.12";
+    private static final String homeDomain = "192.168.31.86";
+
     public void setCookie(HttpServletResponse response, String key, String value) {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(60 * 60);
-        cookie.setDomain("172.18.31.12");
+        cookie.setDomain(homeDomain);
 //        cookie.setHttpOnly(true);true表示js不能操作cookie
         cookie.setPath("/");
         response.addCookie(cookie);
@@ -21,6 +24,8 @@ public class SessionHelper {
             e.printStackTrace();
         }
     }
+
+
 }
 
 
