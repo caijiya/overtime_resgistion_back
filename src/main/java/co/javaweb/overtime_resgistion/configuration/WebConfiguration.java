@@ -38,7 +38,8 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(userLoginInterceptor())
                 //员工接口拦截
-                .addPathPatterns("/employee");
+                .addPathPatterns("/employee")
+                .addPathPatterns("/apply");
     }
 
 

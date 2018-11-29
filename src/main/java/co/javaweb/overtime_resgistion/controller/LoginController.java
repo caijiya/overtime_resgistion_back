@@ -49,8 +49,7 @@ public class LoginController {
     }
 
     @GetMapping("/logout")
-    public Message logout(HttpServletRequest request, HttpServletResponse response
-    ) throws IOException {
+    public Message logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.invalidate();
         return Messages.NOT_LOGED;

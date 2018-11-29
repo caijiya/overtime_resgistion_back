@@ -37,7 +37,7 @@ public class EmployeeController {
         //@Todo jpa动态查询，劝后人不要用这个，花里胡哨浪费时间，mybatis天下第一
         Pageable pageable = new PageRequest(pageNum - 1, pageSize);
         Page<Employee> employees = employeeRepository.findAll((Root<Employee> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
-            List<Predicate> list = new ArrayList<Predicate>();
+            List<Predicate> list = new ArrayList<>();
             if (StringUtils.isNoneEmpty(employee.getName())) {
                 Predicate namePredicate = criteriaBuilder.equal(root.get("name"), employee.getName());
                 list.add(namePredicate);

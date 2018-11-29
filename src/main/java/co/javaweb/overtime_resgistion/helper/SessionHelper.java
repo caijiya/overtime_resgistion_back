@@ -14,7 +14,7 @@ public class SessionHelper {
     public void setCookie(HttpServletResponse response, String key, String value) {
         Cookie cookie = new Cookie(key, value);
         cookie.setMaxAge(60 * 60);
-        cookie.setDomain(homeDomain);
+        cookie.setDomain(workDomain);
 //        cookie.setHttpOnly(true);true表示js不能操作cookie
         cookie.setPath("/");
         response.addCookie(cookie);
