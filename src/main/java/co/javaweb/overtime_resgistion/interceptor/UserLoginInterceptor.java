@@ -31,8 +31,10 @@ public class UserLoginInterceptor extends HandlerInterceptorAdapter {
             return true;
         }
         Cookie username = WebUtils.getCookie(request, "username");
-        System.out.println(username.getValue());
-//        Cookie cookie = WebUtils.getCookie(request, "JSESSIONID");
+        if (username == null) {
+            response.getWriter().append(JSON.toJSONString(Messages.SESSION_TIME_OUT));
+            return false;
+        }
         HttpSession session = request.getSession();
         System.out.println(session.getAttribute("username"));
         Object USERNAME = session.getAttribute("username");

@@ -14,7 +14,8 @@ import java.util.Date;
 public class Employee extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int employee_id;
+    @Column(name = "employee_id")
+    private int id;
     @Column(length = 25)
     private String name;
     @Column(length = 40)
@@ -33,13 +34,6 @@ public class Employee extends BaseEntity {
         this.sex = sex;
     }
 
-    public int getEmployee_id() {
-        return employee_id;
-    }
-
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
-    }
 
     public String getName() {
         return name;
@@ -71,5 +65,13 @@ public class Employee extends BaseEntity {
 
     public void setModify_date(Date modify_date) {
         this.modify_date = modify_date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
