@@ -8,8 +8,8 @@ import java.util.Date;
 public class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 8785606535249965194L;
-    private int page;
-    private int limit;
+    private int page = 1;
+    private int limit = 10;
     @JSONField(format = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
 

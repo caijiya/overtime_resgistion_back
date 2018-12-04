@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.javaweb.overtime_resgistion.dao.ApplyDao">
+    <insert id="save" useGeneratedKeys="true" parameterType="Apply"
+            keyProperty="overtime_id" keyColumn="overtime_id">
+        insert into `apply`
+            (`overtime_id`,`apply_status`,`approver_id`,`employee_id`,`endtime`,`overtime_hours`,`overtime_reason`,`send_person_id`,`starttime`,`status`,`approval_reason`)
+         values
+            (#{overtime_id},#{apply_status},#{approver_id},#{employee_id},#{endtime},#{overtime_hours},#{overtime_reason},#{send_person_id},#{starttime},#{status},#{approval_reason})
+    </insert>
+
+    <select id="findByExample">
+        select overtime_id,apply_status ,approver_id ,employee_id,
+endtime ,overtime_hours ,overtime_reason ,send_person_id ,starttime ,status ,approval_reason ,
+    </select>
+
+
+</mapper>
+
